@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -13,7 +14,7 @@ public class Server implements Runnable {
     private static String CLIENT_CONNECTED_MSG = "CLIENT CONNECTED: ";
     private static String CLIENT_DISSCONNECTED_MSG = "CLIENT DISSCONNECTED: ";
     private ConcurrentHashMap <SocketAddress, ClientHandler> clientMap;
-    private BlockingQueue<String message> broadcastQueue;
+    private BlockingQueue<String> broadcastQueue;
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private Executor executor;
@@ -49,7 +50,11 @@ public class Server implements Runnable {
     }
 
     public void broadcast(String message) {
-        broadcastQueue.put(message);
+        try {
+            broadcastQueue.put(message);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
