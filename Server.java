@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -9,7 +10,7 @@ import java.util.concurrent.Executors;
  * Represents a server listening to a port and handles clients
  */
 public class Server implements Runnable {
-    private ConcurrentHashMap<ClientHandler, String> clientMap;
+    private ConcurrentHashMap<SocketAddress, ClientHandler> clientMap;
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private Executor executor;
@@ -21,7 +22,7 @@ public class Server implements Runnable {
      */
     public Server(int port, int threads) throws IOException {
             serverSocket = new ServerSocket(port);
-            clientMap = new ConcurrentHashMap<>();
+            clientMap = new ConcurrentHashMap<SocketAddress, ClientHandler>();
             executor = Executors.newFixedThreadPool(threads);
     }
 
@@ -30,6 +31,8 @@ public class Server implements Runnable {
      * @param socket client socket
      */
     private void addClient(Socket socket) {
+        this.broadcast("CLIENT CONNECTED: " + socket.getRemoteSocketAddress());
+        this.clientMap.put(socket.getRemoteSocketAddress(), new ClientHandler(socket));
 
     }
 
@@ -41,7 +44,7 @@ public class Server implements Runnable {
 
     }
 
-    public synchronized void broadcast() {
+    public synchronized void broadcast(String message) {
 
     }
 
@@ -49,8 +52,8 @@ public class Server implements Runnable {
     public void run() {
         try {
             while (true) {
-                clientSocket = serverSocket.accept();
-                executor.execute(new ClientHandler(clientSocket));
+                this.clientSocket = serverSocket.accept();
+                this.executor.execute(new ClientHandler(clientSocket));
             }
         }
         catch(Exception exception) {
