@@ -23,9 +23,10 @@ class Consumer implements Runnable {
 	}
 	
 	void consume(Task task) {
-		// It takes some time to consume a task.
 		try {
-			Thread.sleep(random.nextInt(1000));
+			clientMap.forEach((id, client) -> {
+                           client.add(messeage);
+                        });
 		}
 		catch (Exception exception) {
 			System.out.println(exception);
