@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
  * Represents a server listening to a port and handles clients
  */
 public class Server implements Runnable {
-    private ConcurrentHashMap<SocketAddress, ClientHandler> clientMap;
+    private ConcurrentHashMap < SocketAddress, ClientHandler > clientMap;
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private Executor executor;
@@ -21,9 +21,9 @@ public class Server implements Runnable {
      * @param threads specified number of threads
      */
     public Server(int port, int threads) throws IOException {
-            serverSocket = new ServerSocket(port);
-            clientMap = new ConcurrentHashMap<SocketAddress, ClientHandler>();
-            executor = Executors.newFixedThreadPool(threads);
+        serverSocket = new ServerSocket(port);
+        clientMap = new ConcurrentHashMap < SocketAddress, ClientHandler > ();
+        executor = Executors.newFixedThreadPool(threads);
     }
 
     /**
@@ -55,8 +55,7 @@ public class Server implements Runnable {
                 this.clientSocket = serverSocket.accept();
                 this.executor.execute(new ClientHandler(clientSocket));
             }
-        }
-        catch(Exception exception) {
+        } catch (Exception exception) {
             System.out.println(exception);
         }
     }
