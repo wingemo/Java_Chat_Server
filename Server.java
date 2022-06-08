@@ -13,6 +13,7 @@ public class Server implements Runnable {
     private static String CLIENT_CONNECTED_MSG = "CLIENT CONNECTED: ";
     private static String CLIENT_DISSCONNECTED_MSG = "CLIENT DISSCONNECTED: ";
     private ConcurrentHashMap < SocketAddress, ClientHandler > clientMap;
+    private BlockingQueue<String message> broadcastQueue;
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private Executor executor;
@@ -47,9 +48,7 @@ public class Server implements Runnable {
     }
 
     public synchronized void broadcast(String message) {
-        clientMap.forEach((id, client) -> {
-            client.add(messeage);
-        });
+        broadcastQueue.put(message);
     }
 
     @Override
