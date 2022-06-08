@@ -2,8 +2,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.Random;
 
 class Consumer implements Runnable {
-	private BlockingQueue<Task> queue;
 
+        private BlockingQueue<String message> broadcastQueue;
 
 	Consumer(BlockingQueue<Task> queue) { 
 		this.queue = queue; 
