@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 public class Server implements Runnable {
   private static String CLIENT_CONNECTED_MSG = "CLIENT CONNECTED: ";
   private static String CLIENT_DISSCONNECTED_MSG = "CLIENT DISSCONNECTED: ";
-  private ConcurrentHashMap < SocketAddress, ClientHandler > clientMap;
+  private ConcurrentHashMap < SocketAddress, Client > clientMap;
   private BlockingQueue < String > broadcastQueue;
   private ServerSocket serverSocket;
   private Socket clientSocket;
@@ -26,7 +26,7 @@ public class Server implements Runnable {
    */
   public Server(int port, int threads) throws IOException {
     serverSocket = new ServerSocket(port);
-    clientMap = new ConcurrentHashMap < SocketAddress, ClientHandler > ();
+    clientMap = new ConcurrentHashMap < SocketAddress, Client > ();
     executor = Executors.newFixedThreadPool(threads);
     this.executor.execute(new Broadcaster(clientMap, broadcastQueue));
   }
@@ -37,14 +37,14 @@ public class Server implements Runnable {
    */
   private void addClient(Socket socket) {
     this.broadcast(CLIENT_CONNECTED_MSG + socket.getRemoteSocketAddress());
-    this.clientMap.put(socket.getRemoteSocketAddress(), new ClientHandler(socket));
+    this.clientMap.put(socket.getRemoteSocketAddress(), new Client(socket));
   }
 
   /**
    * Remove client from ConcurrentHashMap
    * @param client client socket
    */
-  public void removeClient(ClientHandler client) {
+  public void removeClient(Client client) {
     this.clientMap.remove(client.getSocket().getRemoteSocketAddress());
     this.broadcast(CLIENT_DISSCONNECTED_MSG + client.getSocket().getRemoteSocketAddress());
   }
