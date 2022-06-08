@@ -27,6 +27,7 @@ public class Server implements Runnable {
         serverSocket = new ServerSocket(port);
         clientMap = new ConcurrentHashMap < SocketAddress, ClientHandler > ();
         executor = Executors.newFixedThreadPool(threads);
+        this.executor.execute(new Broadcaster(clientMap, broadcastQueue));
     }
 
     /**
