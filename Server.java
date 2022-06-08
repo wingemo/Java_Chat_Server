@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
  * Represents a server listening to a port and handles clients
  */
 public class Server implements Runnable {
+    private static String CLIENT_CONNECTED_MSG = "CLIENT CONNECTED: ";
     private ConcurrentHashMap < SocketAddress, ClientHandler > clientMap;
     private ServerSocket serverSocket;
     private Socket clientSocket;
@@ -31,7 +32,7 @@ public class Server implements Runnable {
      * @param socket client socket
      */
     private void addClient(Socket socket) {
-        this.broadcast("CLIENT CONNECTED: " + socket.getRemoteSocketAddress());
+        this.broadcast(CLIENT_CONNECTED_MSG + socket.getRemoteSocketAddress());
         this.clientMap.put(socket.getRemoteSocketAddress(), new ClientHandler(socket));
 
     }
