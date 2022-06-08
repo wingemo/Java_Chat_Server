@@ -57,7 +57,7 @@ public class Server implements Runnable {
         try {
             while (true) {
                 this.clientSocket = serverSocket.accept();
-                this.executor.execute(new ClientHandler(clientSocket));
+                addClient(clientSocket);
             }
         } catch (Exception exception) {
             System.out.println(exception);
