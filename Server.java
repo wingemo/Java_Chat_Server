@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
  */
 public class Server implements Runnable {
     private static String CLIENT_CONNECTED_MSG = "CLIENT CONNECTED: ";
+    private static String CLIENT_DISSCONNECTED_MSG = "CLIENT DISSCONNECTED: ";
     private ConcurrentHashMap < SocketAddress, ClientHandler > clientMap;
     private ServerSocket serverSocket;
     private Socket clientSocket;
@@ -39,10 +40,11 @@ public class Server implements Runnable {
 
     /**
      * Remove client from ConcurrentHashMap
-     * @param socket client socket
+     * @param client client socket
      */
-    public void removeClient(Socket socket) {
-
+    public void removeClient(ClientHandler client) {
+        this.clientMap.remove(client.getSocket().getRemoteSocketAddress());
+        this.broadcast(CLIENT_DISSCONNECTED_MSG + client.getSocket().getRemoteSocketAddress());
     }
 
     public synchronized void broadcast(String message) {
@@ -60,4 +62,3 @@ public class Server implements Runnable {
             System.out.println(exception);
         }
     }
-}
