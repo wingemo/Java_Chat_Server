@@ -1,7 +1,7 @@
 import java.util.concurrent.BlockingQueue;
 import java.util.Random;
 
-class Consumer implements Runnable {
+class Broadcaster implements Runnable {
 
         private BlockingQueue<String message> broadcastQueue;
         private ConcurrentHashMap <SocketAddress, ClientHandler> clientMap;
@@ -25,7 +25,7 @@ class Consumer implements Runnable {
 	void consume(Task task) {
 		try {
 			clientMap.forEach((id, client) -> {
-                           client.add(messeage);
+                           client.send(messeage);
                         });
 		}
 		catch (Exception exception) {
