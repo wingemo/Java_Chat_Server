@@ -29,6 +29,5 @@ class Consumer implements Runnable {
 		catch (Exception exception) {
 			System.out.println(exception);
 		}
-		System.out.println(task.getData());
 	}
 }
