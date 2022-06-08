@@ -3,7 +3,7 @@ import java.util.Random;
 
 class Consumer implements Runnable {
 	private BlockingQueue<Task> queue;
-	private Random random = new Random();
+
 
 	Consumer(BlockingQueue<Task> queue) { 
 		this.queue = queue; 
