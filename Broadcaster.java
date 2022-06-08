@@ -6,9 +6,9 @@ import java.util.concurrent.ConcurrentHashMap;
 class Broadcaster implements Runnable {
 
   private BlockingQueue < String > broadcastQueue;
-  private ConcurrentHashMap < SocketAddress, ClientHandler > clientMap;
+  private ConcurrentHashMap < SocketAddress, Client > clientMap;
 
-  public Broadcaster(ConcurrentHashMap < SocketAddress, ClientHandler > clientMap, BlockingQueue < String > queue) {
+  public Broadcaster(ConcurrentHashMap < SocketAddress, Client > clientMap, BlockingQueue < String > queue) {
     this.broadcastQueue = queue;
     this.clientMap = clientMap;
   }
