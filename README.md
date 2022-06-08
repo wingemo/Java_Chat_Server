@@ -1,1 +1,1 @@
-# Java_Chat_Server
+# Java -  thread safe stream socket chat server
