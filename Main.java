@@ -1,7 +1,6 @@
 import java.io.IOException;
 
 public class Main {
-  private static String CONFIG_FILE_PATH = "config.properties";
   private static Server server;
   private static int threads;
 
