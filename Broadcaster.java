@@ -4,6 +4,7 @@ import java.util.Random;
 class Consumer implements Runnable {
 
         private BlockingQueue<String message> broadcastQueue;
+        private ConcurrentHashMap <SocketAddress, ClientHandler> clientMap;
 
 	Consumer(BlockingQueue<Task> queue) { 
 		this.queue = queue; 
@@ -12,7 +13,7 @@ class Consumer implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				Task task = queue.take();
+				String message = queue.take();
 				consume(task);
 			}
 			catch (Exception exception) {
