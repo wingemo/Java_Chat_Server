@@ -35,7 +35,6 @@ public class Server implements Runnable {
     private void addClient(Socket socket) {
         this.broadcast(CLIENT_CONNECTED_MSG + socket.getRemoteSocketAddress());
         this.clientMap.put(socket.getRemoteSocketAddress(), new ClientHandler(socket));
-
     }
 
     /**
