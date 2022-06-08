@@ -48,7 +48,9 @@ public class Server implements Runnable {
     }
 
     public synchronized void broadcast(String message) {
+        clientMap.forEach((id, uuid) -> {
 
+        });
     }
 
     @Override
@@ -62,3 +64,4 @@ public class Server implements Runnable {
             System.out.println(exception);
         }
     }
+}
