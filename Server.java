@@ -48,8 +48,8 @@ public class Server implements Runnable {
     }
 
     public synchronized void broadcast(String message) {
-        clientMap.forEach((id, uuid) -> {
-
+        clientMap.forEach((id, client) -> {
+            Client.add(messeage);
         });
     }
 
