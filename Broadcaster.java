@@ -1,20 +1,23 @@
+import java.net.SocketAddress;
 import java.util.concurrent.BlockingQueue;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 class Broadcaster implements Runnable {
 
-  private BlockingQueue < String message > broadcastQueue;
+  private BlockingQueue < String > broadcastQueue;
   private ConcurrentHashMap < SocketAddress, ClientHandler > clientMap;
 
-  Broadcaster(BlockingQueue < Task > queue) {
-    this.queue = queue;
+  public Broadcaster(ConcurrentHashMap < SocketAddress, ClientHandler > clientMap, BlockingQueue < String > queue) {
+    this.broadcastQueue = queue;
+    this.clientMap = clientMap;
   }
 
   public void run() {
     while (true) {
       try {
-        String message = queue.take();
-        consume(task);
+        String message = broadcastQueue.take();
+        consume(message);
       } catch (Exception exception) {
         System.out.println(exception);
       }
