@@ -8,7 +8,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * Represents a server listening to a port and handles clients
+ * Represents a server listening to a port and handles 
+ *
  * @author Philip Wingemo
  */
 public class Server implements Runnable {
