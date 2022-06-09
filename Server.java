@@ -11,6 +11,8 @@ import java.util.concurrent.Executors;
  * Represents a server listening to a port and handles 
  *
  * @author Philip Wingemo
+ * @version 1.0
+ * @since   2022-06-31 
  */
 public class Server implements Runnable {
   private static String CLIENT_CONNECTED_MSG = "CLIENT CONNECTED: ";
