@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Represents a server listening to a port and handles clients
+ * @author Captain America
  */
 public class Server implements Runnable {
   private static String CLIENT_CONNECTED_MSG = "CLIENT CONNECTED: ";
