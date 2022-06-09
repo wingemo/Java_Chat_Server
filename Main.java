@@ -4,9 +4,9 @@ import java.io.IOException;
 * The HelloWorld program implements an application that
 * simply displays "Hello World!" to the standard output.
 *
-* @author  Zara Ali
+* @author  Philip Wingemo
 * @version 1.0
-* @since   2014-03-31 
+* @since   2022-06-31 
 */
 public class Main {
   private static Server server;
