@@ -1,8 +1,7 @@
 import java.io.IOException;
 
 /**
-* The HelloWorld program implements an application that
-* simply displays "Hello World!" to the standard output.
+* Thread safe stream socket chat server
 *
 * @author  Philip Wingemo
 * @version 1.0
