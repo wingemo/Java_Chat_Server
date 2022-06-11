@@ -8,13 +8,14 @@ import java.io.IOException;
 * @since   2022-06-31 
 */
 public class Main {
-  private static Server server;
-  private static int threads;
+  private Server server;
+  private int threads;
 
   public static void main(String[] args) {
     try {
-      threads = Runtime.getRuntime().availableProcessors();
-      server = new Server(Integer.parseInt(args[0]), threads);
+      Main main = new Main();  
+      main.threads = Runtime.getRuntime().availableProcessors();
+      main.server = new Server(Integer.parseInt(args[0]), main.threads);
     } catch (IOException e) {
       e.printStackTrace();
     }
