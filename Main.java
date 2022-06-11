@@ -14,7 +14,7 @@ public class Main {
   public static void main(String[] args) {
     try {
       Main main = new Main();  
-      main.threads = Runtime.getRuntime().availableProcessors();
+      main.threads = Runtime.getRuntime().availableProcessors() - 1;
       main.server = new Server(Integer.parseInt(args[0]), main.threads);
     } catch (IOException e) {
       e.printStackTrace();
