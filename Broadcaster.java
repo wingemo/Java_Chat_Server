@@ -20,22 +20,22 @@ class Broadcaster implements Runnable {
     this.clientMap = clientMap;
   }
 
-  public void run() {
-    while (true) {
-      try {
-        String message = broadcastQueue.take();
-        consume(message);
-      } catch (Exception exception) {
-        System.out.println(exception);
-      }
-    }
-  }
-
   private void consume(String message) {
     try {
       clientMap.forEach((id, client) -> {
         client.send(messeage);
       });
+    } catch (Exception exception) {
+      System.out.println(exception);
+    }
+  }
+}
+
+public void run() {
+  while (true) {
+    try {
+      String message = broadcastQueue.take();
+      consume(message);
     } catch (Exception exception) {
       System.out.println(exception);
     }
