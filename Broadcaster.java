@@ -3,6 +3,13 @@ import java.util.concurrent.BlockingQueue;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Represents a broadcaster handles message
+ *
+ * @author Philip Wingemo
+ * @version 1.0
+ * @since   2022-06-31 
+ */
 class Broadcaster implements Runnable {
 
   private BlockingQueue < String > broadcastQueue;
