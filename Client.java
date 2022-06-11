@@ -15,24 +15,12 @@ public class ClientHandler implements Runnable {
         return server;
     }
 
-    public void setServer(Server server) {
-        this.server = server;
-    }
-
     public Socket getSocket() {
         return socket;
     }
 
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-
     public int getIdentifier() {
         return identifier;
-    }
-
-    public void setIdentifier(int identifier) {
-        this.identifier = identifier;
     }
 
     @Override
