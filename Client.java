@@ -7,9 +7,7 @@ import java.util.Objects;
 public class ClientHandler implements Runnable {
 
     private Server server;
-
     private Socket socket;
-
     private int identifier;
 
     public ClientHandler(Socket socket, Server server) {
