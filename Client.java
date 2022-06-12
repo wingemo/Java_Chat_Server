@@ -12,7 +12,11 @@ public class ClientHandler implements Runnable {
 
     private int identifier;
 
-    public ClientHandler(Socket clientSocket) {}
+    public ClientHandler(Socket socket, Server server) {
+        this.socket = socket;
+        this.server = server;
+        this.identifier = socket.getInetAddress().getHostName();
+    }
 
     public Server getServer() {
         return server;
@@ -25,7 +29,7 @@ public class ClientHandler implements Runnable {
     public int getIdentifier() {
         return identifier;
     }
-    
+
     public void clientSend(String message) {
         try {
             OutputStream output = socket.getOutputStream();
@@ -35,7 +39,7 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
