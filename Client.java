@@ -25,17 +25,7 @@ public class ClientHandler implements Runnable {
     public int getIdentifier() {
         return identifier;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ClientHandler that = (ClientHandler) o;
-        return identifier == that.identifier &&
-            Objects.equals(server, that.server) &&
-            Objects.equals(socket, that.socket);
-    }
-
+    
     public void clientSend(String message) {
         try {
             OutputStream output = socket.getOutputStream();
@@ -44,6 +34,16 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientHandler that = (ClientHandler) o;
+        return identifier == that.identifier &&
+            Objects.equals(server, that.server) &&
+            Objects.equals(socket, that.socket);
     }
 
     @Override
