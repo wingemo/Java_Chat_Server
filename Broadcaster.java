@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since   2022-06-31 
  */
 class Broadcaster implements Runnable {
-
   private BlockingQueue < String > broadcastQueue;
   private ConcurrentHashMap < SocketAddress, Client > clientMap;
 
