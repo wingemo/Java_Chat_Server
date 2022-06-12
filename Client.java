@@ -5,7 +5,6 @@ import java.net.Socket;
 import java.util.Objects;
 
 public class ClientHandler implements Runnable {
-
     private Server server;
     private Socket socket;
     private int identifier;
